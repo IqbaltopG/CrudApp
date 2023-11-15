@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\siswaModel>
  */
-class siswaFactory extends Factory
+class siswaModelFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,9 +17,14 @@ class siswaFactory extends Factory
     public function definition(): array
     {
         return [
-            'NIK' => fake()->id(),
-            'nama' => fake()->name(),
-            'alamat' => fake()->address()
+            'NIK' => fake()->randomNumber(8,true),
+            'nama' => fake()->firstName(),
+            'alamat' => fake()->street(),
+            'kelurahan' =>fake()->word(),
+            'kecamatan' => fake()->word(),
+            'provinsi' => fake()->state(),
+            'kota' => fake()->city()
+
         ];
     }
 }

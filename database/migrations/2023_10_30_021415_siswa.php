@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('alamat',60);
             $table->string('kelurahan',20);
             $table->string('kecamatan',20);
-            $table->string('kota',20);
-            $table->string('provinsi',20);
+            $table->string('kota',40);
+            $table->string('provinsi',30);
             $table->timestamps();
         });
     }

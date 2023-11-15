@@ -8,13 +8,28 @@
     <table class="w-full text-sm text-left text-white dark:text-white">
         <thead class="text-xs text-gray-100 uppercase bg-gray-900 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-                <th scope="col" class="px-6 py-3 w-64">
+                <th scope="col" class="px-6 py-3">
                     NIK
                 </th>
-                <th scope="col" class="px-6 py-3 w-64 bg-gray-950">
+                <th scope="col" class="px-6 py-3 ">
                    Nama
                 </th>
-                <th scope="col" class="px-6 py-3 w-64">
+                <th scope="col" class="px-6 py-3 ">
+                    Alamat
+                 </th>
+                 <th scope="col" class="px-6 py-3 ">
+                    Kelurahan
+                 </th>
+                 <th scope="col" class="px-6 py-3 ">
+                    Kecamatan
+                 </th>
+                 <th scope="col" class="px-6 py-3 ">
+                    Kota
+                 </th>
+                 <th scope="col" class="px-6 py-3 ">
+                    Provinsi
+                 </th>
+                <th scope="col" class="px-6 py-3">
                     Action
                 </th>
             </tr>
@@ -22,14 +37,30 @@
         <tbody>
             @foreach ($siswa_models as $item)
             <tr class="bg-gray-800 border-gray-900 dark:bg-gray-800 dark:border-gray-700 hover:bg-slate-600">
-                <th scope="row" class="px-6 py-4 font-medium text-white whitespace-nowrap dark:text-white">
+                <th scope="row" class="px-6 py-1 font-medium text-white whitespace-nowrap dark:text-white">
                     {{$item->NIK}}
                 </th>
-                <td class="px-6 py-4">
+                <td class=" px-6 py-1">
                     {{$item->nama}}
-                <td class="px-6 w-2 py-4 inline-flex ">
+                </td>
+                <td class="px-6 py-1">
+                    {{$item->alamat}}
+                </td>
+                <td class="px-6 py-1">
+                    {{$item->kelurahan}}
+                </td>
+                <td class="px-6 py-1">
+                    {{$item->kecamatan}}
+                </td>
+                <td class="px-6 py-1">
+                    {{$item->kota}}
+                </td>
+                <td class="px-6 py-1">
+                    {{$item->provinsi}}
+                </td>
+                <td class="px-1 w-2 py-1 inline-flex ">
                     <div>
-                            <button data-modal-target="default-modal-{{$item->id}}" data-modal-toggle="default-modal-{{$item->id}}"  class="pl-3  text-yellow-300 background-transparent font-bold uppercase px-3  text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 hover:underline">detail</button>
+                            <button data-modal-target="default-modal-{{$item->id}}" data-modal-toggle="default-modal-{{$item->id}}"  class="pl-5  text-yellow-300 background-transparent font-bold uppercase px-3  text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 hover:underline">detail</button>
                             {{-- modal spot --}}
 
                             <div id="default-modal-{{$item->id}}" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -57,12 +88,20 @@
                                             <h1 class="text-white font-bold">kecamatan : {{$item->kecamatan}}</h1>
                                             <h1 class="text-white font-bold">Kota : {{$item->kota}}</h1>
                                             <h1 class="text-white font-bold">Provinsi : {{$item->provinsi}}</h1>
-                                            <br>
-                                            <a class="font-bold text-blue-400 dark:text-blue-800 hover:underline" href="/siswa/{{$item->id}}/edit"> EDIT </a>
+
                                         </div>
                                         <!-- Modal footer -->
-                                        <div class="flex items-center p-4 md:p-5 border-t border-gray-600 rounded-b dark:border-gray-600">
-                                            <button data-modal-hide="default-modal-{{$item->id}}" type="button" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">CLOSE</button>
+                                        <div class="flex items-center p-4 md:p-5 border-t border-gray-600 rounded-b dark:border-gray-600 inline-flex">
+                                            <a class="font-bold pb-1 uppercase ease-linear text-blue-400 dark:text-blue-800 hover:underline" href="/siswa/{{$item->id}}/edit"> EDIT </a>
+                                            <form action="/siswa/{{$item->id}}" method="POST">
+                                                @method('DELETE')
+                                                @csrf
+
+
+
+                                                <button class="pl-3 font-bold  text-rose-500 background-transparent uppercase px-3  outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 hover:underline" onclick="return confirm('Yakin ???')" type="submit">delete</button>
+                                            </form>
+                                            {{-- <button data-modal-hide="default-modal-{{$item->id}}" type="button" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 ">CLOSE</button> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -72,16 +111,8 @@
 
 
 
-                        <a class="font-medium text-blue-400 dark:text-blue-500 hover:underline" href="/siswa/{{$item->id}}/edit"> EDIT </a>
+                        {{-- <a class="font-medium text-blue-400 dark:text-blue-500 hover:underline" href="/siswa/{{$item->id}}/edit"> EDIT </a> --}}
 
-                        <form action="/siswa/{{$item->id}}" method="POST">
-                            @method('DELETE')
-                            @csrf
-
-
-
-                            <button class="pl-3  text-rose-500 background-transparent font-bold uppercase px-3  text-xs outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150 hover:underline" onclick="return confirm('Yakin ???')" type="submit">delete</button>
-                        </form>
                 </td>
             </tr>
             @endforeach
