@@ -9,8 +9,8 @@ class base extends Controller
     public function show(){
 
         $post = siswaModel::all();
+        $post = siswaModel::sortable()->get();
 
-
-        return view('welcome')->with('siswa_models' , $post);
+        return view('welcome',compact('post'));
     }
 }

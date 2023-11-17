@@ -9,10 +9,10 @@
         <thead class="text-xs text-gray-100 uppercase bg-gray-900 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3">
-                    NIK
+                    @sortablelink('NIK')
                 </th>
                 <th scope="col" class="px-6 py-3 ">
-                   Nama
+                    @sortablelink('nama')
                 </th>
                 <th scope="col" class="px-6 py-3 ">
                     Alamat
@@ -24,7 +24,7 @@
                     Kecamatan
                  </th>
                  <th scope="col" class="px-6 py-3 ">
-                    Kota
+                    @sortablelink('kota')
                  </th>
                  <th scope="col" class="px-6 py-3 ">
                     Provinsi
@@ -35,7 +35,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($siswa_models as $item)
+            @foreach ($post as $item)
             <tr class="bg-gray-800 border-gray-900 dark:bg-gray-800 dark:border-gray-700 hover:bg-slate-600">
                 <th scope="row" class="px-6 py-1 font-medium text-white whitespace-nowrap dark:text-white">
                     {{$item->NIK}}
@@ -91,7 +91,9 @@
 
                                         </div>
                                         <!-- Modal footer -->
-                                        <div class="flex items-center p-4 md:p-5 border-t border-gray-600 rounded-b dark:border-gray-600 inline-flex">
+                                        <div class="flex items-center p-4 md:p-5 border-t border-gray-600 ro
+
+                                        unded-b dark:border-gray-600 inline-flex">
                                             <a class="font-bold pb-1 uppercase ease-linear text-blue-400 dark:text-blue-800 hover:underline" href="/siswa/{{$item->id}}/edit"> EDIT </a>
                                             <form action="/siswa/{{$item->id}}" method="POST">
                                                 @method('DELETE')

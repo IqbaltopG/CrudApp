@@ -185,4 +185,6 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
+
 ];

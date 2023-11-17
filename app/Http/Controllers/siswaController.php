@@ -35,7 +35,7 @@ class siswaController extends Controller
             'kelurahan' => 'required|max:20',
             'kecamatan' => 'required|max:20',
             'kota' => 'required|max:20',
-            'provinsi' => 'required|max:20'
+            'provinsi' => 'required|max:60'
         ],[
             'NIK.required' => 'NIK field is required',
             'NIK.max' => 'The NIK field must not be greater than 12 characters'
@@ -77,8 +77,8 @@ class siswaController extends Controller
             'alamat' => 'required|max:60',
             'kelurahan' => 'required|max:20',
             'kecamatan' => 'required|max:20',
-            'kota' => 'required|max:20',
-            'provinsi' => 'required|max:20'
+            'kota' => 'required|max:40',
+            'provinsi' => 'required|max:40'
         ]);
 
         $post = siswaModel::findOrFail($id);
