@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('kecamatan',20);
             $table->string('kota',40);
             $table->string('provinsi',30);
+            $table->date('dob',30);
+            // $table->integer('umur');
             $table->timestamps();
         });
     }

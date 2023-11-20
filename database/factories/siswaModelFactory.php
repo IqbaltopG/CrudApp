@@ -23,7 +23,8 @@ class siswaModelFactory extends Factory
             'kelurahan' =>fake()->word(),
             'kecamatan' => fake()->word(),
             'provinsi' => fake()->state(),
-            'kota' => fake()->city()
+            'kota' => fake()->city(),
+            'dob' => fake()->date()
 
         ];
     }

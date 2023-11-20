@@ -30,6 +30,7 @@ class siswaController extends Controller
     {
         $validatedData = $request->validate([
             'NIK' => 'required|max:12|unique:siswa_models',
+            'dob' => 'required',
             'nama' => 'required|max:20',
             'alamat' => 'required|max:60',
             'kelurahan' => 'required|max:20',
@@ -45,7 +46,7 @@ class siswaController extends Controller
 
         $post = siswaModel::all();
 
-        return redirect('/list');
+        return redirect('/list')->with('success','berhasil menambahkan data');
 
     }
 
@@ -75,6 +76,7 @@ class siswaController extends Controller
         $rules = ([
             'nama' => 'required|max:20',
             'alamat' => 'required|max:60',
+            'dob' => 'required',
             'kelurahan' => 'required|max:20',
             'kecamatan' => 'required|max:20',
             'kota' => 'required|max:40',
@@ -102,6 +104,6 @@ class siswaController extends Controller
 
         $post->delete();
 
-        return redirect('/list');
+        return redirect('/list')->with('delete','data berhasil di hapus');
     }
 }

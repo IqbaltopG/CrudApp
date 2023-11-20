@@ -2,7 +2,32 @@
 
 
 @section('container')
+@if (session()->has('success'))
+<div class="bg-teal-100 border-t-4 border-teal-500 rounded-b text-teal-900 px-4 py-3 shadow-md" role="alert">
+    <div class="flex">
 
+        <p class="font-bold">{{session('success')}}</p>
+
+      </div>
+    </div>
+  </div>
+@endif
+@if (session()->has('delete'))
+<div id="alert-additional-content-2" class="p-4 mb-4 text-red-800 border border-red-600 rounded-lg bg-red-300 dark:bg-gray-800 dark:text-red-400 dark:border-red-800" role="alert">
+    <div class="flex items-center">
+      <svg class="flex-shrink-0 w-4 h-4 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+        <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+      </svg>
+      <span class="sr-only">Info</span>
+      <h3 class="text-lg font-medium">{{session('delete')}}</h3>
+    </div>
+    <div class="flex">
+      <button type="button" class="text-red-800 bg-transparent border border-red-800 hover:bg-red-900 hover:text-white focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-xs px-3 py-1.5 text-center dark:hover:bg-red-600 dark:border-red-600 dark:text-red-500 dark:hover:text-white dark:focus:ring-red-800" data-dismiss-target="#alert-additional-content-2" aria-label="Close">
+        Dismiss
+      </button>
+    </div>
+</div>
+@endif
 
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
     <table class="w-full text-sm text-left text-white dark:text-white">
@@ -13,6 +38,12 @@
                 </th>
                 <th scope="col" class="px-6 py-3 ">
                     @sortablelink('nama')
+                </th>
+                <th scope="col" class="px-6 py-3 ">
+                    DOB
+                </th>
+                <th scope="col" class="px-6 py-3 ">
+                    UMUR(th)
                 </th>
                 <th scope="col" class="px-6 py-3 ">
                     Alamat
@@ -36,12 +67,18 @@
         </thead>
         <tbody>
             @foreach ($post as $item)
-            <tr class="bg-gray-800 border-gray-900 dark:bg-gray-800 dark:border-gray-700 hover:bg-slate-600">
+            <tr class="{{ $loop->even ? 'bg-gray-600' : 'bg-slate-500' }} border-gray-900 dark:bg-gray-800 dark:border-gray-700 hover:bg-slate-400">
                 <th scope="row" class="px-6 py-1 font-medium text-white whitespace-nowrap dark:text-white">
                     {{$item->NIK}}
                 </th>
                 <td class=" px-6 py-1">
                     {{$item->nama}}
+                </td>
+                <td class=" px-6 py-1">
+                    {{$item->dob}}
+                </td>
+                <td class=" px-6 py-1">
+                    {{\Carbon\Carbon::parse($item->dob)->diff(\Carbon\Carbon::now())->format('%y');}}
                 </td>
                 <td class="px-6 py-1">
                     {{$item->alamat}}
@@ -91,7 +128,7 @@
 
                                         </div>
                                         <!-- Modal footer -->
-                                        <div class="flex items-center p-4 md:p-5 border-t border-gray-600 ro
+                                        <div class="items-center p-4 md:p-5 border-t border-gray-600 ro
 
                                         unded-b dark:border-gray-600 inline-flex">
                                             <a class="font-bold pb-1 uppercase ease-linear text-blue-400 dark:text-blue-800 hover:underline" href="/siswa/{{$item->id}}/edit"> EDIT </a>
